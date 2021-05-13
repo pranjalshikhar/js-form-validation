@@ -13,27 +13,28 @@ form.addEventListener('submit', (event) => {
 });
 
 // define sendData 
-const sendData = (successRate, count) => {
+const sendData = (usernameVal, successRate, count) => {
     if (successRate === count) {
         alert("REGISTRATION SUCCESSFUL");
         swal({
-            title: "Welcome!",
+            title: "Welcome! " + usernameVal,
             text: "Registration Sucessful!",
             icon: "success",
             button: "Aww yiss!",
         });
+        location.href = `demo.html?username=${usernameVal}`;
     }
 }
 
 // for final data validation
-const successMsg = () => {
+const successMsg = (usernameVal) => {
     let formCon = document.getElementsByClassName("form-control");
     var count = formCon.length - 1;
     for (var i = 0; i < formCon.length; i++) {
         if (formCon[i].className === "form-control success") {
             var successRate = 0 + i;
             console.log(successRate);
-            sendData(successRate, count);
+            sendData(usernameVal, successRate, count);
         } else {
             return false;
         }
@@ -104,7 +105,7 @@ const validate = () => {
         setSuccessMsg(cpassword);
     }
 
-    successMsg();
+    successMsg(usernameVal);
 }
 
 // define error message
