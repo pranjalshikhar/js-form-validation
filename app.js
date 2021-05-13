@@ -12,6 +12,34 @@ form.addEventListener('submit', (event) => {
     validate();
 });
 
+// define sendData 
+const sendData = (successRate, count) => {
+    if (successRate === count) {
+        alert("REGISTRATION SUCCESSFUL");
+        swal({
+            title: "Welcome!",
+            text: "Registration Sucessful!",
+            icon: "success",
+            button: "Aww yiss!",
+        });
+    }
+}
+
+// for final data validation
+const successMsg = () => {
+    let formCon = document.getElementsByClassName("form-control");
+    var count = formCon.length - 1;
+    for (var i = 0; i < formCon.length; i++) {
+        if (formCon[i].className === "form-control success") {
+            var successRate = 0 + i;
+            console.log(successRate);
+            sendData(successRate, count);
+        } else {
+            return false;
+        }
+    }
+}
+
 // define isEmail()
 const isEmail = (emailVal) => {
     var atSymbol = emailVal.indexOf("@");
@@ -75,6 +103,8 @@ const validate = () => {
     } else {
         setSuccessMsg(cpassword);
     }
+
+    successMsg();
 }
 
 // define error message
